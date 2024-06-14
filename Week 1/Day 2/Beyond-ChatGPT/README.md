@@ -1,6 +1,6 @@
 ---
-title: BeyondChatGPT Demo
-emoji: 📉
+title: DS/ML Bot - Beyond ChatGPT
+emoji: 🤖
 colorFrom: pink
 colorTo: yellow
 sdk: docker

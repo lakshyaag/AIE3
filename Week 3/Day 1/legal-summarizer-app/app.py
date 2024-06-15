@@ -69,16 +69,13 @@ async def start_chat():
         model_id,
         quantization_config=bnb_config,
         device_map="auto",
-        cache_dir=os.path.join(os.getcwd(), ".cache"),
     )
 
     # Move model to GPU if available
     if torch.cuda.is_available():
         model = model.to("cuda")
 
-    tokenizer = AutoTokenizer.from_pretrained(
-        model_id, cache_dir=os.path.join(os.getcwd(), ".cache")
-    )
+    tokenizer = AutoTokenizer.from_pretrained(model_id)
 
     tokenizer.pad_token = tokenizer.eos_token
     tokenizer.padding_side = "right"

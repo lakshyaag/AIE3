@@ -1,8 +1,8 @@
 ---
 title: Legal Summarizer App
-emoji: 🤖
-colorFrom: pink
-colorTo: yellow
+emoji: ⚖️
+colorFrom: red
+colorTo: green
 sdk: docker
 pinned: false
 app_port: 7860

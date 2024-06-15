@@ -100,7 +100,9 @@ async def main(message: cl.Message):
     # return only the generated response (not the prompt) as output
     response = decoded_output[0].split("<|end_header_id|>")[-1]
 
-    await message.reply(response)
+    msg = cl.Message(content=response)
+
+    await msg.send()
 
 
 if __name__ == "__main__":

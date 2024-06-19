@@ -1,3 +1,13 @@
+---
+title: Paul Graham Essay RAG
+emoji: 📝
+colorFrom: red
+colorTo: green
+sdk: docker
+pinned: false
+app_port: 7860
+---
+
 # Week 4: Tuesday
 
 In today's assignment, we'll be creating an Open Source LLM-powered LangChain RAG Application in Chainlit.
@@ -18,7 +28,7 @@ Create a "+ New Endpoint" from the Inference Endpoints dashboard.
 
 ![image](https://i.imgur.com/G6Bq9KC.png)
 
-Select the `NousResearch/Meta-Llama-3-8B-Instruct` model repository and name your endpoint. Select N. Virginia as your region (`us-east-1`). Give your endpoint an appropriate name. Make sure to select *at least* a L4 GPU. 
+Select the `NousResearch/Meta-Llama-3-8B-Instruct` model repository and name your endpoint. Select N. Virginia as your region (`us-east-1`). Give your endpoint an appropriate name. Make sure to select *at least* a L4 GPU.
 
 ![image](https://i.imgur.com/X3YlUbh.png)
 
@@ -35,6 +45,7 @@ If you were successful, you should see the following screen:
 ![image](https://i.imgur.com/IBYG3wm.png)
 
 #### Embedding Model Endpoint
+
 We'll be using `Snowflake/snowflake-arctic-embed-m` for our embedding model today.
 
 The process is the same as the LLM - but we'll make a few specific tweaks:
@@ -47,7 +58,7 @@ After which, make sure the advanced configuration is set like so:
 
 ![image](https://i.imgur.com/bbcrhUj.png)
 
-> #### NOTE: PLEASE SHUTDOWN YOUR INSTANCES WHEN YOU HAVE COMPLETED THE ASSIGNMENT TO PREVENT UNESSECARY CHARGES.
+> #### NOTE: PLEASE SHUTDOWN YOUR INSTANCES WHEN YOU HAVE COMPLETED THE ASSIGNMENT TO PREVENT UNESSECARY CHARGES
 
 ### Build Task 2: Create RAG Pipeline with LangChain
 
@@ -61,7 +72,7 @@ Once you're done - please move on to Build Task 3!
 
 ![image](https://i.imgur.com/0YzyQX7.png)
 
-> NOTE: You may notice the application builds slowly (~15min.) with the default free-tier hardware. The process will be faster using the `CPU upgrade` Space Hardware - though it is not required. 
+> NOTE: You may notice the application builds slowly (~15min.) with the default free-tier hardware. The process will be faster using the `CPU upgrade` Space Hardware - though it is not required.
 
 2. Clone the newly created space into a directory that is *NOT IN YOUR AI MAKERSPACE REPOSITORY* using the SSH option.
 
@@ -69,21 +80,22 @@ Once you're done - please move on to Build Task 3!
 
 ![image](https://i.imgur.com/5RyBdP5.png)
 
-3. Copy and Paste (`cp ...` or through UI) the contents of `Week 4/Day 1` into the newly cloned repository. 
+3. Copy and Paste (`cp ...` or through UI) the contents of `Week 4/Day 1` into the newly cloned repository.
 
 > NOTE: Please keep the `README.md` that was cloned from your space and delete the class `README.md`.
 
-4. Using the `ls` command or the `tree` command verify that you have copied over: 
- - `app.py`
- - `Dockerfile`
- - `data/paul_graham_essays.txt`
- - `chainlit.md`
- - `.gitignore`
- - `.env.sample`
- - `solution_app.py`
- - `requirements.txt`
+4. Using the `ls` command or the `tree` command verify that you have copied over:
 
- Here is an example as the `ls -al` CLI command: 
+- `app.py`
+- `Dockerfile`
+- `data/paul_graham_essays.txt`
+- `chainlit.md`
+- `.gitignore`
+- `.env.sample`
+- `solution_app.py`
+- `requirements.txt`
+
+ Here is an example as the `ls -al` CLI command:
 
  ![image](https://i.imgur.com/vazGYeb.png)
 
@@ -93,7 +105,7 @@ Once you're done - please move on to Build Task 3!
 
  > NOTE: If you get stuck, there is a working reference version in `solution_app.py`.
 
- 7. When you are done with local testing - push your changes to your space. 
+ 7. When you are done with local testing - push your changes to your space.
 
  8. Make sure you add your `HF_LLM_ENDPOINT`, `HF_EMBED_ENDPOINT`, `HF_TOKEN` as "Secrets" in your Hugging Face Space.
 
@@ -147,4 +159,4 @@ Shout out to @AIMakerspace !
 Feel free to reach out if you're curious or would like to collaborate on similar projects! 🤝🔥
 ```
 
-> #### NOTE: PLEASE SHUTDOWN YOUR INSTANCES WHEN YOU HAVE COMPLETED THE ASSIGNMENT TO PREVENT UNESSECARY CHARGES.
+> #### NOTE: PLEASE SHUTDOWN YOUR INSTANCES WHEN YOU HAVE COMPLETED THE ASSIGNMENT TO PREVENT UNESSECARY CHARGES

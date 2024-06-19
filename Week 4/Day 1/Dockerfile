@@ -4,9 +4,11 @@ USER user
 ENV HOME=/home/user \
     PATH=/home/user/.local/bin:$PATH
 WORKDIR $HOME/app
-COPY --chown=user . $HOME/app
+
 COPY ./requirements.txt ~/app/requirements.txt
 RUN pip install -r requirements.txt
+
+COPY --chown=user . $HOME/app
 COPY . .
-RUN chown user:user -R .
+RUN chown user ${HOME}/app/data
 CMD ["chainlit", "run", "app.py", "--port", "7860"]

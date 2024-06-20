@@ -1,3 +1,0 @@
-GENERATOR_MODEL = "gpt-4o"
-REWRITER_MODEL = "gpt-4o"
-GRADER_MODEL = "gpt-4o"

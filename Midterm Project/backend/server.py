@@ -4,15 +4,15 @@ from fastapi.middleware.cors import CORSMiddleware
 from langserve import add_routes
 
 from graph import create_graph
-from chat_types import ChatInputType
+from utils.chat_types import ChatInputType
 
 # Load environment variables from .env file
 load_dotenv()
 
 app = FastAPI(
-    title="Gen UI Backend",
+    title="CRAG Backend",
     version="1.0",
-    description="A simple api server using Langchain's Runnable interfaces",
+    description="Backend to run agent performing corrective RAG over annual reports",
 )
 
 # Configure CORS

@@ -1,16 +1,13 @@
 from typing import List
 
-import aiosqlite
-from generator import rag_chain
-from grader import retrieval_grader
 from langchain.schema import Document
-from langgraph.checkpoint.aiosqlite import AsyncSqliteSaver
 from langgraph.graph import END, StateGraph
-from langgraph.graph.message import add_messages
-from retriever import retriever
-from rewriter import question_rewriter
+from nodes.generator import rag_chain
+from nodes.grader import retrieval_grader
+from nodes.retriever import retriever
+from nodes.rewriter import question_rewriter
 from tools.search_wikipedia import wikipedia
-from typing_extensions import Annotated, TypedDict
+from typing_extensions import TypedDict
 
 
 # DEFINE STATE GRAPH
@@ -27,7 +24,7 @@ class GraphState(TypedDict):
 
     # Update this to work with memory in a better way.
     question: str
-    generation: Annotated[List[str], add_messages]
+    generation: str
     wiki_search: str
     documents: List[str]
 
@@ -111,45 +108,14 @@ def search_wikipedia(state):
     return {"question": question, "documents": documents}
 
 
-def question_node(state):
-    question = state["question"]
-    generation = state.get("generation", None)
-
-    return {"question": question, "generation": generation}
-
-
-def check_memory_or_db(state):
-    print("Checking memory or database...")
-    print(state)
-
-    if state.get("generation", None) is not None and len(state["generation"]) > 0:
-        question = state["question"]
-        generation = state["generation"]
-
-        perform_rag = retrieval_grader.invoke(
-            {"question": question, "document": generation}
-        )
-
-        if perform_rag.binary_score == "yes":
-            print("Memory not sufficient. Performing RAG.")
-            return "retrieve"
-
-        else:
-            print("Memory sufficient. Generating answer.")
-            return "generate"
-
-    else:
-        print("No memory found. Retrieving documents...")
-        return "retrieve"
-
-
 # DEFINE CONDITIONAL EDGES
 def generate_or_not(state):
     print("Determining whether to query Wikipedia...")
 
     wiki_search = state["wiki_search"]
+    filtered_docs = state["documents"]
 
-    if wiki_search:
+    if len(filtered_docs) == 0 and wiki_search:
         print("Rewriting query and supplementing information from Wikipedia...")
         return "rewrite_query"
 
@@ -162,18 +128,13 @@ def create_graph():
     # DEFINE WORKFLOW
     workflow = StateGraph(GraphState)
 
-    workflow.add_node("start", question_node)
-
     workflow.add_node("retrieve", retrieve)
     workflow.add_node("grade_documents", grade_documents)
     workflow.add_node("rewrite_query", rewrite_query)
     workflow.add_node("search_wikipedia", search_wikipedia)
     workflow.add_node("generate", generate)
 
-    workflow.set_entry_point("start")
-    workflow.add_conditional_edges(
-        "start", check_memory_or_db, {"retrieve": "retrieve", "generate": "generate"}
-    )
+    workflow.set_entry_point("retrieve")
     workflow.add_edge("retrieve", "grade_documents")
     workflow.add_conditional_edges(
         "grade_documents",
@@ -185,11 +146,7 @@ def create_graph():
     workflow.add_edge("search_wikipedia", "generate")
     workflow.add_edge("generate", END)
 
-    # DEFINE MEMORY
-    checkpoints = aiosqlite.connect("./checkpoints/checkpoint.sqlite")
-    memory = AsyncSqliteSaver(checkpoints)
-
     # COMPILE GRAPH
-    app = workflow.compile(checkpointer=memory)
+    app = workflow.compile()
 
     return app

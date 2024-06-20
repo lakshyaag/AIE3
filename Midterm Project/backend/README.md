@@ -93,3 +93,4 @@ A sample FastAPI server is provided in the `server.py` file. Note that this uses
 ## TODO
 
 - [ ] Implement memory in the chatbot
+- [ ] Fix streaming issues in the UI - for some reason, I can't figure out LangGraph with Chainlit

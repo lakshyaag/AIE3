@@ -19,15 +19,11 @@ async def main(message: cl.Message):
 
     msg = cl.Message(content="")
 
-    async for event in graph.astream_events(
+    res = graph.invoke(
         {"question": message.content},
         config=RunnableConfig(callbacks=[cl.LangchainCallbackHandler()]),
-        version="v2",
-    ):
-        if (
-            event["event"] == "on_chat_model_stream"
-            and event["metadata"]["langgraph_node"] == "generate"
-        ):
-            await msg.stream_token(event["data"]["chunk"].content)
+    )
+
+    msg.content = res["generation"].content
 
     await msg.send()

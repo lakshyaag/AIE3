@@ -24,6 +24,8 @@ async def main(message: cl.Message):
         config=RunnableConfig(callbacks=[cl.LangchainCallbackHandler()]),
     )
 
+    print(res)
+
     msg.content = res["generation"].content
 
     await msg.send()

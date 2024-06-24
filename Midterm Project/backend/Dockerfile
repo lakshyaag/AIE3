@@ -14,4 +14,4 @@ RUN pip install -r $HOME/app/requirements.txt
 COPY --chown=user . $HOME/app
 RUN chown user -R ${HOME}/app/
 
-CMD ["chainlit", "run", "app.py", "--port", "7860"]
+CMD ["streamlit", "run", "app.py", "--server.port", "7860"]

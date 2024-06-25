@@ -138,6 +138,6 @@ The whole process flow so far looks like this:
 
 I've tried to list out all the possible hyperparameters I could think of, but I'm sure there are more that could be evaluated. For a more comprehensive read, check out [Jason Liu's](https://jxnl.github.io/blog/writing/2024/02/28/levels-of-complexity-rag-applications/) blog post on the levels of complexity in RAG applications.
 
-The notebook can be found [here](https://github.com/lakshyaag/AIE3/tree/main/Notes).
+The notebook can be found [here](https://github.com/lakshyaag/AIE3/blob/main/Notes/LLM%20Evals/Running%20LangSmith%20Evals.ipynb).
 
 Stay tuned for more updates!

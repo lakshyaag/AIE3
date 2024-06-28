@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "financial-chat"
+version = "0.1.0"
+description = ""
+authors = ["Lakshya Agarwal <lakshyajannu@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+langchain = "^0.2.6"
+langchain-openai = "^0.1.11"
+supabase = "^2.5.1"
+python-dotenv = "^1.0.1"
+langsmith = "^0.1.82"
+rich = "^13.7.1"
+
+[tool.poetry.dev-dependencies]
+pytest = "^6.2"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

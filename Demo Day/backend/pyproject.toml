@@ -13,6 +13,9 @@ supabase = "^2.5.1"
 python-dotenv = "^1.0.1"
 langsmith = "^0.1.82"
 rich = "^13.7.1"
+lark = "^1.1.9"
+langchain-community = "^0.2.6"
+edgartools = "^2.25.1"
 
 [tool.poetry.dev-dependencies]
 pytest = "^6.2"

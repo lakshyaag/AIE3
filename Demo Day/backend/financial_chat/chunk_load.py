@@ -64,7 +64,7 @@ def check_if_documents_exist(params: ReportParams) -> bool:
         bool: True if the documents exist, False otherwise.
     """
     rows = (
-        supabase.table("documents_new")
+        supabase.table("documents_duplicate")
         .select("*", count="exact")
         .eq("metadata->>ticker", params.ticker)
         .eq("metadata->year", params.year)

@@ -16,6 +16,6 @@ embeddings = OpenAIEmbeddings(model="text-embedding-3-small", dimensions=512)
 vectorstore = SupabaseVectorStore(
     supabase,
     embedding=embeddings,
-    table_name="documents_new",
-    query_name="match_documents",
+    table_name="documents_duplicate",
+    query_name="match_documents_duplicate",
 )

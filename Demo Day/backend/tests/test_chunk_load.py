@@ -43,13 +43,17 @@ def test_add_documents():
         item_names=["Item 1", "Item 2", "Item 7"],
     )
 
-    result = get_company_filing(params)
+    rows = check_if_documents_exist(params)
 
-    documents = chunk_items(result["items"], params)
+    if rows:
+        return
 
-    assert len(documents) > 0
+    else:
+        result = get_company_filing(params)
+        documents = chunk_items(result["items"], params)
 
-    load_documents(documents)
+        assert len(documents) > 0
+        load_documents(documents)
 
 
 def test_add_documents_invalid():

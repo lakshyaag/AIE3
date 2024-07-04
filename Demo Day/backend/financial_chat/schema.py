@@ -28,9 +28,15 @@ class FilingItem(Enum):
 
 
 class ReportParams(BaseModel):
-    ticker: str = Field(..., description="The ticker of the company.")
-    year: int = Field(..., description="The year of the filing.")
+    """
+    The parameters to get a company's filing information for a specific year and form.
+    """
+
+    ticker: str = Field(
+        ..., description="The ticker of the company.", max_length=4, min_length=1
+    )
+    year: int = Field(..., description="The year of the filing.", ge=1990, le=2023)
     form: Literal["10-K", "10-Q"] = Field(..., description="The form of the filing.")
     item_names: List[FilingItem] = Field(
-        ..., description="The items to get from the filing."
+        None, description="The items to get from the filing."
     )

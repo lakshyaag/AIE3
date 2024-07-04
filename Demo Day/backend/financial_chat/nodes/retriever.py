@@ -18,7 +18,7 @@ metadata_field_info = [
         type="integer or list[integer]",
     ),
 ]
-document_content_description = "Chunks of text from financial reports"
+document_content_description = "Chunks of text from financial reports (10-K or 10-Q) filed with the SEC in the United States. Tickers are maximum 4 characters long. The current year is 2024. The current month is July."
 
 llm = ChatOpenAI(temperature=0, model="gpt-4o")
 

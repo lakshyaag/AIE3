@@ -1,6 +1,6 @@
 import re
 from typing import List
-from financial_chat.types_ import FilingItem, ReportParams
+from financial_chat.schema import FilingItem, ReportParams
 from edgar import Company, CompanyFiling, CompanyFilings, set_identity
 
 set_identity("lazy@lazyg.com")
@@ -81,10 +81,7 @@ def get_company_filing(
     Get a company's filing information based on parameters.
 
     Args:
-        ticker (str): The company's ticker.
-        year (int): The year to filter by.
-        form (str, optional): The form to filter by. Defaults to "10-K".
-        item_names (List[FilingItem], optional): The items to get. Defaults to [].
+        params (ReportParams): The parameters to get the filing information for.
 
     Returns:
         dict: The items from the company's filing.

@@ -5,7 +5,7 @@ from financial_chat.chunk_load import (
     load_documents,
     check_if_documents_exist,
 )
-from financial_chat.types_ import ReportParams
+from financial_chat.schema import ReportParams
 
 
 def test_chunk_valid_filing():

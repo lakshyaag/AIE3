@@ -3,7 +3,7 @@ from langchain.schema import Document
 from typing import List
 
 from financial_chat.supabase_client import vectorstore, supabase
-from financial_chat.types_ import ReportParams
+from financial_chat.schema import ReportParams
 
 
 def chunk_items(
@@ -68,7 +68,7 @@ def check_if_documents_exist(params: ReportParams) -> bool:
         .select("*", count="exact")
         .eq("metadata->>ticker", params.ticker)
         .eq("metadata->year", params.year)
-        .eq("metadata->>form", "10-K")
+        .eq("metadata->>form", params.form)
         .in_("metadata->>item_name", [item.value for item in params.item_names])
         .execute()
     )

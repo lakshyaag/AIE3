@@ -1,6 +1,6 @@
 import pytest
 from financial_chat.fetch_documents import get_company_filing
-from financial_chat.types_ import ReportParams
+from financial_chat.schema import ReportParams
 
 
 def test_get_company_filing_valid():

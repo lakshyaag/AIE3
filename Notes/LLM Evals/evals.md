@@ -2,7 +2,7 @@
 
 While learning about LLMs and the entire lifecycle, I wanted to do some evaluations myself to understand the concepts better and get a hands-on experience.
 
-This post will walk you through some setup and inital evaluations I did on a 10-K financial dataset using LangSmith. I used [`edgartools`](https://github.com/dgunning/edgartools) to access the SEC EDGAR database programmatically, load the 10-K filings, chunk and embed them into a [Supabase](https://supabase.com/) `pgvector` database, and then use metadata filtering to evaluate two models (`gpt-4o` and `gpt-3.5-turbo`) with varying levels of `k` for the retrieval task. Huge shoutout to [Virat Singh](https://github.com/virattt) for the amazing `financial-datasets` package, where I derived a lot of inspiration from.
+This post will walk you through some setup and initial evaluations I did on a 10-K financial dataset using LangSmith. I used [`edgartools`](https://github.com/dgunning/edgartools) to access the SEC EDGAR database programmatically, load the 10-K filings, chunk and embed them into a [Supabase](https://supabase.com/) `pgvector` database, and then use metadata filtering to evaluate two models (`gpt-4o` and `gpt-3.5-turbo`) with varying levels of `k` for the retrieval task. Huge shoutout to [Virat Singh](https://github.com/virattt) for the amazing `financial-datasets` package, where I derived a lot of inspiration from.
 
 ## Setup
 

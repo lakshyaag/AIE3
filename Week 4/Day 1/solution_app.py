@@ -136,7 +136,7 @@ async def start_chat():
 @cl.on_message  
 async def main(message: cl.Message):
     """
-    This function will be called every time a message is recieved from a session.
+    This function will be called every time a message is received from a session.
 
     We will use the LCEL RAG chain to generate a response to the user query.
 
